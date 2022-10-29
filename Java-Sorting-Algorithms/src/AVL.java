@@ -1,4 +1,10 @@
 public class AVL<T extends Comparable> {
+    
+    private final int ALLOWED_IMBALANCE = 1;
+
+    private AvlNode<T> root; // Tree root
+    
+    
     private static class AvlNode<T> {
         T element; // The data in the node
 
@@ -20,9 +26,7 @@ public class AVL<T extends Comparable> {
         }
     }
 
-    private final int ALLOWED_IMBALANCE = 1;
-
-    private AvlNode<T> root; // Tree root
+    
 
     public AVL() // Construct the tree
     {
