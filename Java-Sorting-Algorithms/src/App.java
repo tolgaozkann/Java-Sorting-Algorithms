@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty; // version 2.11.1
 
 public class App {
     public static void main(String[] args) throws Exception {
-
+        InsertionSort insertionSortObject = new InsertionSort();
         ArrayList<Vulnerability> vulnerabilities = new ArrayList<Vulnerability>();
         ObjectMapper om = new ObjectMapper();
         InputStream is = Root.class.getResourceAsStream("/data3.json");
@@ -17,9 +17,7 @@ public class App {
 
         for (Root elementRoot : root) {
             for (Result elemetResult : elementRoot.result) {
-                for (Vulnerability rootelement2 : elemetResult.vulnerabilities) {
-                    System.out.println(rootelement2.cve.id);
-                }
+                insertionSortObject.insertionSortArrayList(elemetResult.vulnerabilities);//insertionSort
             }
         }
     }
