@@ -5,10 +5,10 @@ public class Quick {
     
 	/**
 	 * This method sort the input ArrayList using quick sort algorithm.
-	 * @param input the ArrayList of integers.
-	 * @return sorted ArrayList of integers.
+	 * @param input the ArrayList of Objects.
+	 * @return sorted ArrayList of Objects.
 	 */
-	private List<Vulnerability> quicksort(List<Vulnerability> input){
+	public List<Vulnerability> quicksort(List<Vulnerability> input){
 		
 		if(input.size() <= 1){
 			return input;
@@ -39,10 +39,10 @@ public class Quick {
 	/**
 	 * Join the less array, pivot integer, and greater array
 	 * to single array.
-	 * @param less integer ArrayList with values less than pivot.
-	 * @param pivot the pivot integer.
-	 * @param greater integer ArrayList with values greater than pivot.
-	 * @return the integer ArrayList after join.
+	 * @param less Object ArrayList with values less than pivot.
+	 * @param pivot the pivot Object.
+	 * @param greater Object ArrayList with values greater than pivot.
+	 * @return the Object ArrayList after join.
 	 */
 	private List<Vulnerability> concatenate(List<Vulnerability> less, Vulnerability pivot, List<Vulnerability> greater){
 		
@@ -61,19 +61,3 @@ public class Quick {
 		return list;
 	}
 }
-
-
-
-//Example Usage
-
-// public static void main(String[] args) {  
-//     int a[] = { 13, 18, 27, 2, 19, 25 };  
-//     int n = a.length;  
-//     System.out.println("\nBefore sorting array elements are - ");  
-//     Quick q1 = new Quick();  
-//     q1.printArr(a, n);  
-//     q1.quick(a, 0, n - 1);  
-//     System.out.println("\nAfter sorting array elements are - ");  
-//     q1.printArr(a, n);  
-//     System.out.println();  
-//     }  
