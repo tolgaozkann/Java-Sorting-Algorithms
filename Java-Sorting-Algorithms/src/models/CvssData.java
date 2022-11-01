@@ -7,7 +7,7 @@ public class CvssData{
     public String confidentialityImpact;
     public String integrityImpact;
     public String availabilityImpact;
-    public int baseScore;
+    public double baseScore;
     public String baseSeverity;
 }
 

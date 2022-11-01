@@ -8,6 +8,9 @@
         "lib/**/*.jar",
         "Java-Sorting-Algorithms/lib/jackson-databind-2.3.1-javadoc.jar",
         "Java-Sorting-Algorithms/lib/com.fasterxml.jackson.databind.jar",
-        "Java-Sorting-Algorithms/lib/jackson-annotations-2.1.2.jar"
+        "Java-Sorting-Algorithms/lib/jackson-annotations-2.1.2.jar",
+        "Java-Sorting-Algorithms/lib/jackson-annotations-2.14.0-rc3.jar",
+        "Java-Sorting-Algorithms/lib/jackson-core-2.14.0-rc3.jar",
+        "Java-Sorting-Algorithms/lib/jackson-databind-2.14.0-rc3.jar"
     ]
 }
