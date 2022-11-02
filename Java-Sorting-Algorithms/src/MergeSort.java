@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import models.Vulnerability;
 
 /* Java program for Merge Sort */
 class MergeSort {

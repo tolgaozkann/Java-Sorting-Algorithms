@@ -1,3 +1,5 @@
+package models;
+
 public class CvssMetricV2{
     public String source;
     public String type;

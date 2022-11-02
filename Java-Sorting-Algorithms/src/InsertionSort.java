@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import models.Vulnerability;
+
 // Java program for implementation of Insertion Sort
 public class InsertionSort {
 
@@ -14,6 +16,10 @@ public class InsertionSort {
             }
             list.set(i + 1, current);
         }
+       for(int i=0;i<list.size();i++){
+                       System.out.println(list.get(i).getBaseScore() + " "+ list.get(i).getImpactScore()+" "+list.get(i).getExploitabilityScore());
+
+       }
     }
 
 };
