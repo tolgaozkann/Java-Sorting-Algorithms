@@ -1,4 +1,4 @@
-package models;
+
 
 public class CpeMatch{
     public boolean vulnerable;

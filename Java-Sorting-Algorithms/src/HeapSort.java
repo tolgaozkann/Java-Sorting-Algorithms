@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import models.Vulnerability;
 
 public class HeapSort {
     public void sort(ArrayList<Vulnerability> list)
@@ -55,9 +54,6 @@ public class HeapSort {
     {
         int N = list.size();
  
-        for (int i = 0; i < N; ++i)
-            System.out.println(list.get(i).getBaseScore() + " "+ list.get(i).getImpactScore()+" "+list.get(i).getExploitabilityScore());
-        
     }
  
  

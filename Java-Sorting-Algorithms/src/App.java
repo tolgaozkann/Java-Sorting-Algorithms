@@ -1,13 +1,7 @@
 
 import com.fasterxml.jackson.databind.ObjectMapper; // version 2.11.1
-
-import models.Result;
-import models.Root;
-
 import java.io.InputStream;
 import java.util.ArrayList;
-<<<<<<< HEAD
-import models.Vulnerability;
 import java.util.List;
 
 public class App {
@@ -15,24 +9,38 @@ public class App {
 
         ArrayList<Vulnerability> vulnerabilities = new ArrayList<Vulnerability>();
 
-        InsertionSort insertionSortObject = new InsertionSort();//insertion sort object
-        HeapSort heapSortObject=new HeapSort();
+        InsertionSort insertionSortObject = new InsertionSort();// insertion sort object
 
+        HeapSort heapSortObject = new HeapSort();//heap sort object
 
-        Quick quickSortObject = new Quick();//quicksort Object
+        AVL avlObject = new AVL();
 
-        ObjectMapper om = new ObjectMapper();//object mapper object
-        InputStream is = Root.class.getResourceAsStream("/data3.json");//json string
+        Quick quickSortObject = new Quick();// quicksort Object
 
-        Root[] root = om.readValue(is, Root[].class);//root array
+        ObjectMapper om = new ObjectMapper();// object mapper object
+        InputStream is = Root.class.getResourceAsStream("/data3.json");// json string
 
-         for (Root elementRoot : root) {
+        Root[] root = om.readValue(is, Root[].class);// root array
+
+        for (Root elementRoot : root) {
             for (Result elementResult : elementRoot.result) {
                 vulnerabilities.addAll(elementResult.vulnerabilities);
-                
+
             }
+        }
+
+        MergeSort mergeSortObject = new MergeSort(vulnerabilities);
+
+        insertionSortObject.insertionSortArrayList(vulnerabilities);// insertionSort
+
+        heapSortObject.sort(vulnerabilities);// insertionSort
+
+        quickSortObject.quicksort(vulnerabilities);// quickSort
+
+        mergeSortObject.sortGivenArray();//mergeSort
+
+        avlObject.avlSort(vulnerabilities);//it creats AVL Tree from given arraylist
+
+
     }
-           insertionSortObject.insertionSortArrayList(vulnerabilities);//insertionSort
-            heapSortObject.sort(vulnerabilities);//insertionSort
-}
 }

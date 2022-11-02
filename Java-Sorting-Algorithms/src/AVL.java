@@ -1,12 +1,13 @@
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class AVL {
-    
+
     private final int ALLOWED_IMBALANCE = 1;
 
-    private AvlNode<Vulnerability> root; // Tree root
-    
-    
+    public AvlNode<Vulnerability> root; // Tree root
+
     private class AvlNode<Vulnerability> {
         Vulnerability element; // The data in the node
 
@@ -27,8 +28,6 @@ public class AVL {
             height = 0;
         }
     }
-
-    
 
     public AVL() // Construct the tree
     {
@@ -86,7 +85,7 @@ public class AVL {
             return t;
 
         if (height(t.left) - height(t.right) > ALLOWED_IMBALANCE) {
-            
+
             if (height(t.left.left) >= height(t.left.right)) {
                 t = rotateWithLeftChild(t);
             } else {
@@ -169,9 +168,65 @@ public class AVL {
         return current;
     }
 
-    public void avlSort(ArrayList<Vulnerability> list){
+    public void avlSort(ArrayList<Vulnerability> list) {
         for (Vulnerability vulnerability : list) {
-            insert(vulnerability, root);
+            this.root = insert(vulnerability, root);
+            printBinaryTree(root);
+        }
+
+    }
+
+
+    //prints binary tree
+    public void printBinaryTree(AvlNode<Vulnerability> rootNode) {
+        Queue<AvlNode<Vulnerability>> rootsQueue = new LinkedList<AvlNode<Vulnerability>>();
+        Queue<AvlNode<Vulnerability>> levelQueue = new LinkedList<AvlNode<Vulnerability>>();
+        levelQueue.add(rootNode);
+        int treeHeight = height(findMin(rootNode));
+        int firstNodeGap;
+        int internalNodeGap;
+        int copyinternalNodeGap;
+        while (true) {
+            System.out.println("");
+            internalNodeGap = (int) (Math.pow(2, treeHeight + 1) - 1);
+            copyinternalNodeGap = internalNodeGap;
+            firstNodeGap = internalNodeGap / 2;
+
+            boolean levelFirstNode = true;
+
+            while (!levelQueue.isEmpty()) {
+                internalNodeGap = copyinternalNodeGap;
+                AvlNode<Vulnerability> currNode = levelQueue.poll();
+                if (currNode != null) {
+                    if (levelFirstNode) {
+                        while (firstNodeGap > 0) {
+                            System.out.format("%s", "   ");
+                            firstNodeGap--;
+                        }
+                        levelFirstNode = false;
+                    } else {
+                        while (internalNodeGap > 0) {
+                            internalNodeGap--;
+                            System.out.format("%s", "   ");
+                        }
+                    }
+                    System.out.format("%3f", currNode.element.getBaseScore());
+                    rootsQueue.add(currNode);
+                }
+            }
+
+            --treeHeight;
+
+            while (!rootsQueue.isEmpty()) {
+                AvlNode<Vulnerability> currNode = rootsQueue.poll();
+                if (currNode != null) {
+                    levelQueue.add(currNode.left);
+                    levelQueue.add(currNode.right);
+                }
+            }
+
+            if (levelQueue.isEmpty())
+                break;
         }
     }
 }
