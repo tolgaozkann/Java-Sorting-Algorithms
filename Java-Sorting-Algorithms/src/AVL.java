@@ -171,7 +171,6 @@ public class AVL {
     public void avlSort(ArrayList<Vulnerability> list) {
         for (Vulnerability vulnerability : list) {
             this.root = insert(vulnerability, root);
-            printBinaryTree(root);
         }
 
     }

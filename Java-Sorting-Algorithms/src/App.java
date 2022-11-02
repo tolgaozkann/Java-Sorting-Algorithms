@@ -28,18 +28,28 @@ public class App {
 
             }
         }
-
+        
         MergeSort mergeSortObject = new MergeSort(vulnerabilities);
-
+        long start = System.currentTimeMillis();
         insertionSortObject.insertionSortArrayList(vulnerabilities);// insertionSort
-
+        long end = System.currentTimeMillis();
+        System.out.println("Insertion time: "+(end-start)+" milliseconds.");
+        start = System.currentTimeMillis();
         heapSortObject.sort(vulnerabilities);// insertionSort
-
+        end = System.currentTimeMillis();
+        System.out.println("HeapSortTime time: "+(end-start)+" milliseconds.");
+        start = System.currentTimeMillis();
         quickSortObject.quicksort(vulnerabilities);// quickSort
-
+        end = System.currentTimeMillis();
+        System.out.println("QuickSort time: "+(end-start)+" milliseconds.");
+        start = System.currentTimeMillis();
         mergeSortObject.sortGivenArray();//mergeSort
-
+        end = System.currentTimeMillis();
+        System.out.println("MergeSort time: "+(end-start)+" milliseconds.");
+        start = System.currentTimeMillis();
         avlObject.avlSort(vulnerabilities);//it creats AVL Tree from given arraylist
+        end = System.currentTimeMillis();
+        System.out.println("AvlSort time: "+(end-start)+" milliseconds.");
 
 
     }
