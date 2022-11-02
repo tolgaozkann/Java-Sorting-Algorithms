@@ -1,24 +1,26 @@
-public class AVL<T extends Comparable> {
+import java.util.ArrayList;
+
+public class AVL {
     
     private final int ALLOWED_IMBALANCE = 1;
 
-    private AvlNode<T> root; // Tree root
+    private AvlNode<Vulnerability> root; // Tree root
     
     
-    private static class AvlNode<T> {
-        T element; // The data in the node
+    private class AvlNode<Vulnerability> {
+        Vulnerability element; // The data in the node
 
-        AvlNode<T> left; // Left child
+        AvlNode<Vulnerability> left; // Left child
 
-        AvlNode<T> right; // Right child
+        AvlNode<Vulnerability> right; // Right child
 
         int height; // Height
 
-        AvlNode(T theElement) {
+        AvlNode(Vulnerability theElement) {
             this(theElement, null, null);
         }
 
-        AvlNode(T theElement, AvlNode<T> l, AvlNode<T> r) {
+        AvlNode(Vulnerability theElement, AvlNode<Vulnerability> l, AvlNode<Vulnerability> r) {
             element = theElement;
             left = l;
             right = r;
@@ -37,7 +39,7 @@ public class AVL<T extends Comparable> {
      * Return the height of node t, or -1, if
      * null.
      */
-    private int height(AvlNode<T> t) {
+    private int height(AvlNode<Vulnerability> t) {
         return t == null ? -1 : t.height;
     }
 
@@ -46,8 +48,8 @@ public class AVL<T extends Comparable> {
      * For AVL trees, this is a single rotation for case 1.
      * Update heights, then return new root.
      */
-    private AvlNode<T> rotateWithLeftChild(AvlNode<T> k2) {
-        AvlNode<T> k1 = k2.left;
+    private AvlNode<Vulnerability> rotateWithLeftChild(AvlNode<Vulnerability> k2) {
+        AvlNode<Vulnerability> k1 = k2.left;
         k2.left = k1.right;
         k1.right = k2;
         k2.height = Math.max(height(k2.left), height(k2.right)) + 1;
@@ -60,8 +62,8 @@ public class AVL<T extends Comparable> {
      * For AVL trees, this is a single rotation for case 4.
      * Update heights, then return new root.
      */
-    private AvlNode<T> rotateWithRightChild(AvlNode<T> k1) {
-        AvlNode<T> k2 = k1.right;
+    private AvlNode<Vulnerability> rotateWithRightChild(AvlNode<Vulnerability> k1) {
+        AvlNode<Vulnerability> k2 = k1.right;
         k1.right = k2.left;
         k2.left = k1;
         k1.height = Math.max(height(k1.left), height(k1.right)) + 1;
@@ -69,21 +71,22 @@ public class AVL<T extends Comparable> {
         return k2;
     }
 
-    private AvlNode<T> doubleWithLeftChild(AvlNode<T> k3) {
+    private AvlNode<Vulnerability> doubleWithLeftChild(AvlNode<Vulnerability> k3) {
         k3.left = rotateWithRightChild(k3.left);
         return rotateWithLeftChild(k3);
     }
 
-    private AvlNode<T> doubleWithRightChild(AvlNode<T> k1) {
+    private AvlNode<Vulnerability> doubleWithRightChild(AvlNode<Vulnerability> k1) {
         k1.right = rotateWithLeftChild(k1.right);
         return rotateWithRightChild(k1);
     }
 
-    private AvlNode<T> balance(AvlNode<T> t) {
+    private AvlNode<Vulnerability> balance(AvlNode<Vulnerability> t) {
         if (t == null)
             return t;
 
         if (height(t.left) - height(t.right) > ALLOWED_IMBALANCE) {
+            
             if (height(t.left.left) >= height(t.left.right)) {
                 t = rotateWithLeftChild(t);
             } else {
@@ -109,15 +112,15 @@ public class AVL<T extends Comparable> {
      * @param t the node that roots the subtree.
      * @return the new root of the subtree.
      */
-    public AvlNode<T> insert(T x, AvlNode<T> t) {
+    public AvlNode<Vulnerability> insert(Vulnerability x, AvlNode<Vulnerability> t) {
         if (t == null)
             return new AvlNode(x, null, null);
 
         int compareResult = x.compareTo(t.element);
 
-        if (compareResult < 0)
+        if (compareResult > 0)
             t.left = insert(x, t.left);
-        else if (compareResult > 0)
+        else if (compareResult < 0)
             t.right = insert(x, t.right);
         else
             ; // Duplicate; do nothing
@@ -131,7 +134,7 @@ public class AVL<T extends Comparable> {
      * @param t the node that roots the subtree.
      * @return the new root of the subtree.
      */
-    public AvlNode<T> remove(T x, AvlNode<T> t) {
+    public AvlNode<Vulnerability> remove(Vulnerability x, AvlNode<Vulnerability> t) {
         if (t == null)
             return t; // Item not found; do nothing
 
@@ -156,13 +159,19 @@ public class AVL<T extends Comparable> {
      * tree. Note that the entire tree does not need
      * to be searched.
      */
-    private AvlNode<T> findMin(AvlNode<T> right) {
+    private AvlNode<Vulnerability> findMin(AvlNode<Vulnerability> right) {
 
-        AvlNode<T> current = right;
+        AvlNode<Vulnerability> current = right;
 
         while (current.left != null) {
             current = current.left;
         }
         return current;
+    }
+
+    public void avlSort(ArrayList<Vulnerability> list){
+        for (Vulnerability vulnerability : list) {
+            insert(vulnerability, root);
+        }
     }
 }
