@@ -1,8 +1,13 @@
 import com.fasterxml.jackson.databind.ObjectMapper; // version 2.11.1
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) throws Exception {
+
+        List<Vulnerability> vulnerabilities = new ArrayList<Vulnerability>();
+
         InsertionSort insertionSortObject = new InsertionSort();//insertion sort object
 
         Quick quickSortObject = new Quick();//quicksort Object
@@ -14,10 +19,10 @@ public class App {
         Root[] root = om.readValue(is, Root[].class);//root array
 
         for (Root elementRoot : root) {
-            for (Result elemetResult : elementRoot.result) {
-                insertionSortObject.insertionSortArrayList(elemetResult.vulnerabilities);//insertionSort
+            for (Result elementResult : elementRoot.result) {
 
-                quickSortObject.quicksort(elemetResult.vulnerabilities);//quickSort
+                vulnerabilities.addAll(elementResult.vulnerabilities);
+                
             }
         }
     }
