@@ -1,3 +1,5 @@
+package models;
+
 public class CvssData{
     public String version;
     public String vectorString;
