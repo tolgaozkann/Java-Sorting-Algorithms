@@ -6,10 +6,15 @@ import models.Root;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import models.Vulnerability;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) throws Exception {
+
+        ArrayList<Vulnerability> vulnerabilities = new ArrayList<Vulnerability>();
+
         InsertionSort insertionSortObject = new InsertionSort();//insertion sort object
         HeapSort heapSortObject=new HeapSort();
 
@@ -17,25 +22,17 @@ public class App {
         Quick quickSortObject = new Quick();//quicksort Object
 
         ObjectMapper om = new ObjectMapper();//object mapper object
-        ArrayList<Vulnerability> vulnerabilities=new ArrayList<>();
         InputStream is = Root.class.getResourceAsStream("/data3.json");//json string
 
         Root[] root = om.readValue(is, Root[].class);//root array
 
-        for (Root elementRoot : root) {
-            for (Result elemetResult : elementRoot.result) {
-                vulnerabilities.addAll(elemetResult.vulnerabilities);
-               
-            }
-        }
          for (Root elementRoot : root) {
-            for (Result elemetResult : elementRoot.result) {
-                insertionSortObject.insertionSortArrayList(elemetResult.vulnerabilities);//insertionSort
-
-                quickSortObject.quicksort(elemetResult.vulnerabilities);//quickSort
+            for (Result elementResult : elementRoot.result) {
+                vulnerabilities.addAll(elementResult.vulnerabilities);
+                
             }
-        }
-        insertionSortObject.insertionSortArrayList(vulnerabilities);//insertionSort
-        heapSortObject.sort(vulnerabilities);//insertionSort
     }
+           insertionSortObject.insertionSortArrayList(vulnerabilities);//insertionSort
+            heapSortObject.sort(vulnerabilities);//insertionSort
+}
 }
